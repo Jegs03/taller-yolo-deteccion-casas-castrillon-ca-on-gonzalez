@@ -24,12 +24,22 @@ async def prediccion(archivo: UploadFile = File(...)):
     # Procesar resultados
     detecciones = []
     for result in results:
-        for box in result.obb:
-            detecciones.append({
-                "clase": int(box.cls[0]),
-                "confianza": float(box.conf[0]),
-                "coordenadas": box.xyxyxyxy[0].tolist()
-            })
+        # Verificar si hay detecciones OBB
+        if result.obb is not None and len(result.obb) > 0:
+            for box in result.obb:
+                detecciones.append({
+                    "clase": int(box.cls[0]),
+                    "confianza": float(box.conf[0]),
+                    "coordenadas": box.xyxyxyxy[0].tolist()
+                })
+        # Si no hay OBB, intentar con boxes normales
+        elif result.boxes is not None and len(result.boxes) > 0:
+            for box in result.boxes:
+                detecciones.append({
+                    "clase": int(box.cls[0]),
+                    "confianza": float(box.conf[0]),
+                    "coordenadas": box.xyxy[0].tolist()
+                })
     
     return JSONResponse(content={
         "imagen": archivo.filename,
