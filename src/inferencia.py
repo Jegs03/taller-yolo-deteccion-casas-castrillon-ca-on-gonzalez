@@ -1,6 +1,6 @@
 from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import JSONResponse
-from src.inferencia import inferir_imagen_bytes
+from .utils import inferir_imagen_bytes
 
 app = FastAPI()
 
