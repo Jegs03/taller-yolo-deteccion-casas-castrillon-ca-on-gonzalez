@@ -9,13 +9,15 @@ Este proyecto implementa un sistema de detección de objetos orientado a casas u
 
 ## Estructura del Proyecto
 ```text
-.
-├── data/               # Directorio del dataset (contiene el archivo data.yaml)
-├── models/             # Almacena los pesos del modelo entrenado (best.pt)
-├── src/                # Lógica de inferencia y utilidades
-├── inferencia.py       # API FastAPI para exponer la detección
-├── train_yolo.py       # Script de entrenamiento con configuración OBB
-└── utils.py            # Funciones auxiliares para el manejo de modelos YOLO
+├── src/
+│   ├── train_yolo.py     # Script de entrenamiento (ejecutar CLI o python)
+│   ├── inferencia.py     # Script para inferir sobre imágenes nuevas
+│   └── utils.py          # Utilidades (convertir formatos, visualizar)
+├── models/# Pesos guardados (.pt)
+│   └── best.pt
+├── requirements.txt      # Dependencias del proyecto
+├── data.yaml             # Descriptor del dataset para YOLO
+└── README.md
 ```
 ## Entrenamiento
 
