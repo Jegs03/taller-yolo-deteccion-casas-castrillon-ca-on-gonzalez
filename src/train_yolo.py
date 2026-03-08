@@ -4,10 +4,10 @@ from pathlib import Path
 
 def main():
 
-    model = YOLO("yolov8n-obb.pt")
+    model = YOLO("yolov8m.pt")
 
     results = model.train(
-        data="dataset/data.yaml",
+        data="data/houses_projecyt.v1i.yolov8/data.yaml",
         epochs=100,
         imgsz=640,
         batch=8,
